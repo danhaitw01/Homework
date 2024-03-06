@@ -1,0 +1,10 @@
+<script>
+var PIDNo=prompt("請輸入身分證字號");
+if (PIDNo.length!=10){
+    alert("長度不正確，包含開頭大寫字母共有10碼");
+}
+else{
+    alert("長度正確");
+}
+alert("依照目前輸入截斷為最多10碼的結果為"+PIDNo.slice(0,10));
+</script>
