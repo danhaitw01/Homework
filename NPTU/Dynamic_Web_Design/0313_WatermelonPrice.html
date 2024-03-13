@@ -1,0 +1,22 @@
+<script>
+    var weight = prompt("請輸入重量:");
+    var price=0;
+    var level="";
+    if(weight>=50){
+        level="A";
+        price=weight*30;
+    }
+    else if(weight>=30){
+        level="B";
+        price=weight*25;
+    }
+    else if(weight>=15){
+        level="C";
+        price=weight*20;
+    }
+    else{
+        level="D";
+        price=weight*10;
+    }
+    console.log("Level is："+level+",Price is："+price);
+</script>

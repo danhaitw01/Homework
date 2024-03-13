@@ -1,0 +1,8 @@
+<script>
+    var inputNo=prompt("請輸入要幾個Fibonacci數");
+    var FibList=[0,1,1]
+    for(var i=2;i<parseInt(inputNo)-1;i++){
+        FibList.push(FibList[i]+FibList[i-1]);
+    }
+    console.log(FibList);
+</script>
