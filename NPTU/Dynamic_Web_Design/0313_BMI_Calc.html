@@ -1,0 +1,17 @@
+<script>
+    var inp_height =prompt("請輸入你的身高");
+    var hcm = parseInt(inp_height);//將輸入的字串轉換為數字
+    var inp_weight =prompt("請輸入你的體重");
+    var wkg = parseInt(inp_weight);//將輸入的字串轉換為數字
+
+    function heightC(fromcm){
+        var toM = fromcm/100;
+        return toM;
+    }
+    function BMI_Calc(height,weight){
+        return weight/(height)**2
+    }
+    out_BMI = BMI_Calc(heightC(hcm),wkg)
+    console.log(out_BMI);
+    alert("Your BMI is "+out_BMI+ ".");
+</script>
