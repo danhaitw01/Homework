@@ -1,0 +1,25 @@
+<h2> TITLE</h2>
+
+<h3 class="price">原價:</h3>
+<h3 class="fee">運費:</h3>
+<h3 class="discount">折扣:</h3>
+<h3 class="total">總金額:</h3>
+<script src="./asset/jquery-3.7.1.slim.min.js"></script>
+<script>
+    $("h2").text("JavaScript練習")
+    $("h2").addClass("highlight")
+    $("h2").css("color","red")
+    $("h2").append(" Title")
+    $("h2").prepend("# ")
+
+    var price =500
+    var discount = 0.79
+    var shipping = 30
+    var total = price*discount+shipping
+    var show ="Total Price: "+total+".0"
+
+    $(".price").append(price)
+    $(".fee").append(shipping)
+    $(".discount").append(discount)
+    $(".total").append(total)
+</script>
