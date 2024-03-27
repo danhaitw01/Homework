@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas/4.2.5/tocas.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas/4.2.5/tocas.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <style type="text/css">
+            .translist{
+                height: 450px;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+            }
+         
+            .translist li {
+                margin-bottom: 5px;
+                font-size: 18px;
+                width: 30%;
+            }
+        </style>
+    </head>
+    <body style="background-color: pink;">
+        <div class="ts-container has-flex-center has-full-size">
+            <div class="ts-box" style="width: 100%;">
+                <div class="ts-grid">
+                    <div class="column is-8-wide">
+                        <div class="ts-content" style="text-align: center;">
+                            <h1>Morse Code Translation</h1>
+                            <h2>摩斯密碼翻譯器</h2>
+                            <div class="ts-input" >
+                                <input type="text" placeholder="輸入英文" value="" id="eng">
+                            </div>
+                            <b>↓↑</b>
+                            <div class="ts-input" >
+                                <input type="text" placeholder="輸入密碼" value="" id="morse">
+                            </div><br>
+                            <button class="ts-button" onclick="$('#morse').val(translateToMorse($('#eng').val()));">加密</button>
+                            <button class="ts-button" onclick="$('#eng').val(translateToEng($('#morse').val()));">解密</button>
+                        </div>
+                    </div>
+                    <div class="column is-8-wide">
+                        <div class="ts-content">
+                            <h2>翻譯清單</h2>
+                            <div class="ts-divider"></div>
+                            <ul class="translist"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var morseCode = "A;-|B;-...|C;-.-.|D;-..|E;.|F;..-.|G;--.|H;....|I;..|J;.---|K;-.-|L;.-..|M;--|N;-.|O;---|P;.--.|Q;--.-|R;.-.|S;...|T;-|U;..-|V;...-|W;.--|X;-..-|Y;-.--|Z;--..|/;-..-.|1;.----|2;..---|3;...--|4;....-|5;.....|6;-....|7;--...|8;---..|9;----.|0;-----";
+            var morseList = morseCode.split("|");
+            for(var i=0; i<morseCode.length;i++){
+                morseList[i]=morseList[i].split(";");
+                $("ul.translist").append("<li>" + morseList[i][0]+"  "  +morseList[i][1]+ "</li>");
+            }
+            $('#eng').keyup(function(){
+                var original=$("#eng").val();
+                var newtext=original.toUpperCase().split(" ").join("");
+                $("#eng").val(newtext);
+            });
+            function findCode(letter){
+                letter=letter.toUpperCase();
+                for(var i=0; i<morseList.length;i++){
+                    if(morseList[i][0]==letter){
+                        return morseList[i][1];
+                    }
+                }
+                return letter;
+            }
+            function findLetter(code){
+                for(var i=0; i<morseList.length;i++){
+                    if(morseList[i][1]==code){
+                        return morseList[i][0];
+                    }
+                }
+                return code;
+            }
+            function translateToMorse(text){
+                var result="";
+                for(var i=0;i<text.length;i++){
+                    result+=findCode(text[i])+" ";
+                }
+                return result;
+            }
+            function translateToEng(text){
+                var result="";
+                var text=text.split(" ");
+                for(var i=0;i<text.length;i++){
+                    result+=findLetter(text[i]);
+                }
+                return result;
+            }
+        </script>
+    </body>
+</html>
