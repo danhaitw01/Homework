@@ -1,0 +1,19 @@
+<b id="price"></b><br>
+<b id="discount"></b><br>
+<b id="fee"></b><br>
+<b id="result"></b>
+<script>
+var Ticket=function(price, discount, fee){
+    this.price=price;
+    this.discount=discount;
+    this.fee=fee;
+    this.getPrice=function(){
+        return this.price*this.discount+this.fee;
+    }
+}
+var ticket1= new Ticket(200,0.85,15);
+document.getElementById("price").textContent="價格:"+ticket1.price;
+document.getElementById("discount").textContent="折扣:"+ticket1.discount;
+document.getElementById("fee").textContent="手續費:"+ticket1.fee;
+document.getElementById("result").textContent="總價:"+ticket1.getPrice();
+</script>
