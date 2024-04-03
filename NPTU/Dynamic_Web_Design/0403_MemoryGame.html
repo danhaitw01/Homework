@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="utf-8">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <style type="text/css">
+            html,body{
+                font-family: Arial;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+            }
+            .status{
+                color: red;
+            }
+
+            .infos{
+                position: absolute;
+                left: 40px;
+                top: 40px;
+            }
+            .infos h1 {
+                font-size: 40px;
+                margin-top: 0;
+                margin-bottom: 0;
+                letter-spacing: 1px;
+                line-height: 1.2;
+            }
+            .infos h3 {
+                color: red;
+            }
+
+            .blocks {
+                color: white;
+            }
+
+            .blocks .row {
+                display: flex;
+            }
+            .blocks .block {
+                width: 100px;
+                height: 100px;
+                border: solid 2px white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: 0.5s;
+                cursor: pointer;
+                margin: 12px;
+            }
+            .blocks .block:active {
+                transition: 0s;
+                background-color: #fff;
+                color: black;
+            }
+            .blocks .block.block1:active ,.blocks .block.block1.active{
+                background-color: #FF5353;
+                box-shadow: 0px 0px 35px #FF5353;
+            }
+            .blocks .block.block2:active ,.blocks .block.block2.active{
+                background-color: #FFC429;
+                box-shadow: 0px 0px 35px #FFC429;
+            }
+            .blocks .block.block3:active ,.blocks .block.block3.active{
+                background-color: #5980C1;
+                box-shadow: 0px 0px 35px #5980C1;
+            }
+            .blocks .block.block4:active ,.blocks .block.block4.active{
+                background-color: #93fac5;
+                box-shadow: 0px 0px 35px #93fac5;
+            }
+            .blocks .block.block1 {
+                box-shadow: 0px 0px 35px rgba(255, 83, 83, 0.2);
+                background-color: transparent;
+                border: solid 2px #ff6d6d;
+            }
+            .blocks .block.block2 {
+                box-shadow: 0px 0px 35px rgba(255, 83, 83, 0.2);
+                background-color: transparent;
+                border: solid 2px #FFC429;
+            }
+            .blocks .block.block3 {
+                box-shadow: 0px 0px 35px rgba(255, 83, 83, 0.2);
+                background-color: transparent;
+                border: solid 2px #5980C1;
+            }
+            .blocks .block.block4 {
+                box-shadow: 0px 0px 35px rgba(255, 83, 83, 0.2);
+                background-color: transparent;
+                border: solid 2px #93fac5;
+            }
+            .blocks .block.block1:hover {
+                background-color: rgba(255, 83, 83, 0.3);
+                box-shadow: 0px 0px 35px rgba(255, 83, 83, 0.5);
+            }
+
+            .blocks .block.block2:hover {
+                background-color: rgba(255, 196, 41, 0.3);
+                box-shadow: 0px 0px 35px rgba(255, 196, 41, 0.5);
+            }
+
+            .blocks .block.block3:hover {
+                background-color: rgba(89, 128, 193, 0.3);
+                box-shadow: 0px 0px 35px rgba(89, 128, 193, 0.5);
+            }
+
+            .blocks .block.block4:hover {
+                background-color: rgba(147, 250, 197, 0.3);
+                box-shadow: 0px 0px 35px rgba(147, 250, 197, 0.5);
+            }
+        </style>
+    </head>
+    <body style="background-color: black;">
+        <div class="infos">
+            <h2>Project 2.</h2>
+            <h1>Memory<br>Game</h1>
+            <h3 class="status">Current Level</h3>
+        </div>
+        <div class="blocks">
+            <div class="row">
+                <div class="block block1">1</div>
+                <div class="block block2">2</div>
+            </div>
+            <div class="row">
+                <div class="block block3">3</div>
+                <div class="block block4">4</div>
+            </div>
+            <div class="row">
+                <div class="inputStatus">○○○○ </div>
+                <div class="clickTimes">0</div>
+            </div>
+        </div>
+        <script>
+            var Blockdata=[{selector:".block1",name:"1",pitch:"1"},
+                {selector:".block2",name:"2",pitch:"2"},
+                {selector:".block3",name:"3",pitch:"3"},
+                {selector:".block4",name:"4",pitch:"4"}
+            ];
+            var Blocks=function(blockAssign,setAssign){
+                this.allOn=false;
+                this.blocks=blockAssign.map((d,i)=>({name:d.name,el:$(d.selector)}));
+            }
+            Blocks.prototype.flash=function(note){
+                let block= this.blocks.find(d=>d.name==note);
+                if(block){
+                    block.el.addClass("active");
+                    setTimeout(()=>{
+                        block.el.removeClass("active");
+                    },300);
+                }
+            }
+            Blocks.prototype.turnAllOn=function(){
+                this.blocks.forEach((block) => {
+                    block.el.addClass("active");                    
+                });
+            }
+            Blocks.prototype.turnAllOff=function(){
+                this.blocks.forEach((block) => {
+                    block.el.removeClass("active");                    
+                });
+            }
+            var blocks=new Blocks(Blockdata);
+
+            var clickTimes=0
+            $('.block').click(function(){
+                clickTimes++;
+                $(".clickTimes").text(clickTimes);
+            });
+        </script>
+    </body>
+</html>
