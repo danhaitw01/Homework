@@ -1,0 +1,125 @@
+html,body{
+    background-color: #132639;
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-family: Verdana;
+  }
+  
+  .coffeeType{
+        display: flex;
+        align-items: center;
+        max-width: 400px;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-bottom: 1px solid rgba(white, 0.1);
+        transition: 0.5s;
+  }
+  
+  .coffeeType:hover {
+        background-color: rgba(white, 0.1);
+      }
+      .coffeeType .num {
+        font-size: 60px;
+        flex: 1;
+        font-weight: bold;
+        margin-right: 30px;
+  }
+  
+  .coffeeType .cupContainer {
+        flex: 1;
+  }
+  
+  /*設定杯子的本體*/
+  .coffeeType .cup{
+        border: 4px solid white;
+        width: 70px;
+    height: 50px;
+    border-top: none;
+    border-radius: 0px 0px 50px 50px;
+    margin: 10px;
+    padding-top: 5px;
+  }
+      .coffeeType .num {
+        font-size: 60px;
+        flex: 1;
+        font-weight: bold;
+        margin-right: 30px;
+      }
+      .coffeeType .cup .coffee, .coffeeType .cup .milk, .coffeeType .cup .water, .coffeeType .cup .bubble {
+        background-color: #fff;
+        height: 15px;
+      }
+  
+      .coffeeType .cup .coffee {
+        background-color: #ec810e;
+      } 
+      .coffeeType .cup .milk {
+        background-color: #f7d8bb;
+      }
+      .coffeeType .cup .water {
+        background-color: #589bce;
+      }
+      .coffeeType .cup .bubble {
+        background-color: #eee;
+      }  
+    
+      .coffeeType .cup .ingradients {
+        display: flex;
+        flex-direction: column-reverse;
+        overflow: hidden;
+        border-radius: 0px 0px 50px 50px;
+        width: 100%;
+        height: 100%;
+      }
+  
+      .coffeeType .cup {
+        position: relative;
+      }
+      
+        /*加入把手*/
+        .coffeeType .cup:before {
+              content: "";
+              display: block;
+              border: 4px solid #fff;
+              position: absolute;
+              border-radius: 0px 50px 50px 0px;
+              border-left: none;
+              width: 15px;
+              height: 20px;
+              left: 100%;
+              top: 40%;
+              transform: translateY(-50%);
+            }
+            .coffeeType .cup.mock {
+              width: 60px;
+              height: 90px;
+              border-radius: 0;
+            }
+            .coffeeType .cup.mock .ingradients {
+              border-radius: 0;
+            }
+            .coffeeType .cup.small {
+              width: 50px;
+              height: 40px;
+            }
+            .coffeeType .cup.large {
+              width: 80px;
+              height: 50px;
+            }
+            .coffeeType.favorite:before {
+              content: "BEST";
+              border: 5px solid;
+              padding: 5px 3px;
+              line-height: 0.9;
+              display: block;
+              color: #ff5e5e;
+              position: absolute;
+              font-size: 30px;
+              transform: translateX(-70px) rotate(-20deg);
+        
+        }
+        .coffeeType.showMode input, .coffeeType.showMode label, .coffeeType.showMode select, .coffeeType.showMode br {
+          display: none;
+        }        

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Coffee Demo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+<body>
+    <div id="app">
+        <h1>Vue Project II - Coffee Editor</h1><br>
+        <div class="coffeeType" v-for="(coffee,val) in coffees" :class="{showMode:!editing,favorite:coffee.name==favoriteType}">
+            <div class="num">0{{val}}</div>
+            <div class="cupContainer">
+                <div class="cup" :class="[coffee.type]"> 
+                    <div class="ingradients">
+                        <div class="coffee" :style="{height:coffee.coffee+'%'}"></div>
+                        <div class="milk" :style="{height:coffee.milk+'%'}"></div>
+                        <div class="water" :style="{height:coffee.water+'%'}"></div>
+                        <div class="bubble" :style="{height:coffee.bubble+'%'}"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="name">{{coffee.name}}</div>
+            <select v-model="coffee.type">
+                <option v-for="cupType in cupTypes" :value="cupType">{{cupType}}</option>
+              </select>
+              <div v-for="type in ['coffee','milk','bubble','water']">
+                  <label>{{type}}: {{coffee[type]}}</label>
+                  <input type="range" v-model="coffee[type]" min="0" max="100"/>
+                </div>
+        </div>
+        <label class="hiddenControl">Editing:
+            <input v-model="editing" type="checkbox"/>
+        </label>
+        Favorite Coffee:
+        <select v-model="favoriteType">
+            <option v-for="coffee in coffees">{{coffee.name}}</option>
+        </select>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.8/vue.min.js'></script>
+    <script src="./main.js"></script>
+</body>
+</html>

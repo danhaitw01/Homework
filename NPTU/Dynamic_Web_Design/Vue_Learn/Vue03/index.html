@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vue03</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div id="app">
+            <div class="control">
+              <input type="checkbox" v-model="gather">Gather Cards
+              <input type="checkbox" v-for="card in cards" v-model="card.open">  
+              <button @click="shuffle" >Shuffle Cards</button>
+              <button @click="startGame" >Play Game</button>
+            </div>
+            <h2>Cards Shuffling Game - {{state}} </h2>
+            <div class="cards" :class="{gather:gather}">
+              <div class="card" v-for="card in cards" :class = "{open: card.open}" :data-order="card.id" @click="openCard(card)">
+                <div class="face back"></div>
+                <div class="face front">{{getSymbol(card.label)}}</div>
+                
+              </div>
+            </div>
+          </div>
+        <script src="./main.js"></script>
+    </body>
+</html>

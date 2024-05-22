@@ -1,0 +1,68 @@
+<html>
+<head>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas/4.2.5/tocas.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas/4.2.5/tocas.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>迷死人飲品線上選購系統</h1>
+    <div id="app">
+        <label>快速搜尋:</label><input class="w80" v-model="keyword" placeholder="請輸入關鍵字" style="width: fit-content;"><br>
+        <div>後台密碼:<input class="w80" id="password" placeholder="請輸入密碼" style="width: fit-content;"><button class="ts-button" id="button" onclick="if(document.getElementById('password').value=='123456789'){Switch_Back();} document.getElementById('password').value=''; if(document.getElementById('button').innerText='進入'){document.getElementById('button').innerText='離開'} else{document.getElementById('button').innerText='進入'}">進入</button></div>
+        <!-- menu panel-->
+  <div class="menu">
+    <div class="cards">
+      <div class="card" v-for="(card, index) in cards" :key="index" v-if="( keyword=='' || card.title.indexOf(keyword)!=-1) && card.price >= minPrice && card.price <= maxPrice && (!card.soldOut || showSoldOut)">
+        <img  class="cover" :src="card.cover">
+        <div class="info">
+          <h3>{{card.title}}
+          <div class="soldOut" v-if="card.soldOut">已售完</div></h3>
+          <div class="price">NT. {{card.price}}$
+          <div class="other">(+{{ServiceFee}}% 服務費)</div>
+          <input type="number" v-model.number="card.quantity" min="0" placeholder="数量">
+          <button @click="addToCart(card)">加入購物車</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 購物車-->
+  <div>
+    <h2>購物車</h2>
+    <ul>
+      <li v-for="item in cart" :key="item.title">
+        {{ item.title }} - 數量: {{ item.quantity }} - 金額: {{ item.quantity * item.price + item.quantity * item.price * ServiceFee / 100 }}
+      </li>
+    </ul>
+    <p>總金額: {{ getTotalAmount() }}</p>
+  </div>
+  
+  <div>
+    <!-- control panel-->
+    <div class="control has-hidden" id="control">
+      <label>最小價錢</label>
+      <input class="w80" v-model="minPrice" type="number"/>
+      <label>最大價錢</label>
+      <input class="w80" v-model="maxPrice" type="number"/>
+      <br>
+      <label>顯示售罄產品</label>
+      <input type="checkbox" v-model="showSoldOut"/>
+      <span v-for="(card, cid) in cards">
+        <span>{{ cid }}</span>
+        <input type="checkbox" v-model="card.soldOut"/>
+        <input v-model.number="card.price"/>
+      </span>
+    </div>
+  </div>
+</div>
+</div>  
+        </div>
+        </div>
+    </div>
+    </div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.8/vue.min.js'></script>
+<script src="./main.js"></script>
+</body>
+</html>
