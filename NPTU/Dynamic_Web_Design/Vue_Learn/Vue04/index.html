@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Cart Project</title>
+      <link rel="stylesheet" href="./style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+      </head>
+
+<body>
+      <div class="title">真厲害手機商店</div>
+      <div id="app">
+            <div class="book" @wheel.prevent="wheel($event)">
+                  <div class="cards">
+                        <div class="card" v-for="book in smartphone">
+                              <div class="left"> 
+                                    <div class="cover" :style="bgcss(book.cover)"></div>
+                              </div>
+                              <div class="right">
+                                    <h2 class="name"> {{book.name}}</h2>
+                                    <h4> {{book.type}}</h4>
+                                    <p class="description" v-html="book.description"></p>
+                                    <div class="price">$ {{book.price}}</div>
+                                    <button class="add" @click="addCart(book,$event)">+ Add to Cart</button>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+            <div class="buybox" :style="bgcss(currentBook.cover)" v-if="currentBook"></div>
+            <div class="fixed-control" @click="isCartOpen=!isCartOpen">
+                  <i class="fa fa-shopping-cart"></i>
+                  <span>{{cart.length}}</span>
+            </div>
+            <div class="control" v-if="isCartOpen">
+                  <div class="panel">
+                        <h2>購物車清單</h2>
+                        <ul>
+                              <li v-for="(book,bid) in cart">
+                                <div class="thumbnail" :style="bgcss(book.cover)"></div>
+                                <h3>{{book.name}}<div class="price">${{book.price}}</div></h3>
+                              </li>
+                              <li v-if="!cart.length">
+                                    <h3>Empty Cart</h3>
+                              </li>
+                        </ul>
+                        <hr>
+                        <h2>{{totalPrice}}</h2>
+                  </div>
+            </div>
+      </div>
+      <!-- Script-->
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js'></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+      <script src="./script.js"></script>
+</body>
+
+</html>
